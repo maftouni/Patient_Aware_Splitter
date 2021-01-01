@@ -15,9 +15,7 @@ def splitter(df,class_name,grouping_column):
     test = df.iloc[test_inds]
     
     train_filenames = list(train['File name'])
-    train_diagnosis =list(train['COVID-19 Infection'])
     test_filenames = list(test['File name'])
-    test_diagnosis =list(test['COVID-19 Infection'])
     
     #print(train_diagnosis)
     count = 0
