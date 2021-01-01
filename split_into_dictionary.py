@@ -1,21 +1,30 @@
-
-from sklearn.model_selection import GroupShuffleSplit
 import glob
-import os
 import cv2
 import pickle
 import pandas as pd
-from random import shuffle
-from shutil import copyfile
+from sklearn.model_selection import train_test_split
 
-def splitter(df,grouping_column,pickling = False):
-    # The function splits the given dataframe (df) after grouping by the grouping_column (which is 'Patient ID' in our case)
+
+def Stratified_Grouped_train_test_split(df, group, stratify_by,test_size=0.2):
+    # I want grouping to be done strictly to ensure there is no overlap of groups whilst stratification 
+    # can be done approximately i.e. as well as is possible.
+    #This function assumes that all instances of one group have the same stratification category,
+    # In other words, all the images coming from the same Patient ID are either Covid or NonCovid
     
-    train_inds, test_inds = next(GroupShuffleSplit(test_size=.2, n_splits=1, random_state = 1).split(df, groups=df[grouping_column]))
-    print('Number of train images: ',len(train_inds))
-    print('Number of test images: ',len(test_inds))
-    train = df.iloc[train_inds]
-    test = df.iloc[test_inds]
+    groups = df[group].drop_duplicates()
+    stratify = df.drop_duplicates(group)[stratify_by].to_numpy()
+    groups_train, groups_test = train_test_split(groups, stratify=stratify, test_size=test_size)
+
+    train = df.loc[lambda d: d[group].isin(groups_train)]
+    test = df.loc[lambda d: d[group].isin(groups_test)]
+
+    return train, test
+
+def splitter(df, group, stratify_by,pickling = False):
+    # The function splits the given dataframe (df) after grouping by the group column (which is 'Patient ID' in our case)
+    # and Stratifying by stratify_by column ('COVID-19 Infection' in this case)
+
+    train, test = Stratified_Grouped_train_test_split(df, group, stratify_by)
     
     train_filenames = list(train['File name'])
     test_filenames = list(test['File name'])
@@ -32,7 +41,8 @@ def splitter(df,grouping_column,pickling = False):
     
     
     
-    for j in range(len(image_list)):          
+    for j in range(len(image_list)):  
+                ## modify to .split('\\') according to your system path          
                 image = image_list[j].split('/')[-1]                
                 if image in train_filenames: 
                        count +=1
@@ -40,7 +50,6 @@ def splitter(df,grouping_column,pickling = False):
                        img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
                        dir_images_train.append(img)
                        dir_label_train.append(df.loc[df['File name'] == image, 'COVID-19 Infection'].values[0])
-                       #copyfile(image_list[j], 'splitted/train/'+class_name+'/'+image_list[j].split('/')[-1])
                 elif image in test_filenames:
                         count +=1
                         img = cv2.imread(image_list[j])
@@ -58,8 +67,7 @@ def splitter(df,grouping_column,pickling = False):
     diction['X_test'] = dir_images_test
     diction['y_test'] = dir_label_test
            
-    #print(diction['y_tr'])
-    #print(diction['X_tr'][0].shape)
+ 
     if pickling == True:   
         with open('training.pickle', 'wb') as handle:
               pickle.dump(diction, handle, protocol=pickle.HIGHEST_PROTOCOL)
@@ -73,4 +81,4 @@ df = pd.read_csv('sample_meta_data.csv')
 df['Patient ID'] = df['Patient ID'].astype(str)
 
 
-splitted_dictionary = splitter(df,'Patient ID')
+splitted_dictionary = splitter(df,'Patient ID','COVID-19 Infection')
