@@ -29,10 +29,10 @@ def splitter(df,class_name,grouping_column):
                 image = image_list[j].split('/')[-1]                
                 if image in train_filenames: 
                        count +=1
-                       copyfile(image_list[j], 'splited/train/'+class_name+'/'+image_list[j].split('/')[-1])
+                       copyfile(image_list[j], 'splitted/train/'+class_name+'/'+image_list[j].split('/')[-1])
                 elif image in test_filenames:
                         count +=1
-                        copyfile(image_list[j], 'splited/test/'+class_name+'/'+image_list[j].split('/')[-1])
+                        copyfile(image_list[j], 'splitted/test/'+class_name+'/'+image_list[j].split('/')[-1])
                 
                     
     print('Total number of copied '+class_name+' images: ',count)
