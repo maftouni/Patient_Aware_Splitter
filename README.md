@@ -1,5 +1,5 @@
 # Patient_Aware_Image_Split
-It is important not to split images of the same patient between the test and train sets to avoid overfitting. This repository splits a sample Covid/Normal classification dataset into test and train sets in a patient aware and stratified manner. The meta-data file is used to group the images based on Patient-ID. For example, all the images colored green belong to the same patient and should be either in test or train split. 
+It is important not to split images of the same patient between the test and train sets to avoid overfitting. This repository splits a sample Covid/Normal classification dataset into test and train sets in a patient aware and stratified manner. The meta-data file is used to group the images based on Patient-ID. For example, all the images colored green belong to the same patient and should be either in the test or the train split. 
 
 ![Screenshot](Images_Grouped_by_Patient_ID.png)
 
