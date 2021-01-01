@@ -3,8 +3,8 @@ It is important not to split images of the same patient between the test and tra
 
 ![Screenshot](Images_Grouped_by_Patient_ID.png)
 
-While grouping should be done strictly to ensure there is no overlap of groups, stratification can be done approximately i.e. as well as possible.
-This code assumes that all instances of one group have the same stratification category, meaning that all the images coming from the same Patient ID are either Covid or NonCovid.
+While grouping should be done strictly to ensure there is no splitting images of a patient, stratification can be done approximately i.e. as well as possible.
+This code also assumes that all images of one patient have the same stratification category (diagnosis), meaning that all the images coming from the same Patient ID are either Covid or NonCovid.
 
 
 To split images into 4 folders (train/Covid, train/NonCovid, test/Covid, test/NonCovid) inside splitted folder:
