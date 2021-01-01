@@ -10,8 +10,6 @@ from shutil import copyfile
 
 def splitter(df,grouping_column,pickling = False):
     # The function splits the given dataframe (df) after grouping by the grouping_column (which is 'Patient ID' in our case)
-    # The classes are separated beforehand to disentagle class stratification and patient grouping problems
-       
     
     train_inds, test_inds = next(GroupShuffleSplit(test_size=.2, n_splits=1, random_state = 1).split(df, groups=df[grouping_column]))
     print('Number of train images: ',len(train_inds))
@@ -70,7 +68,6 @@ def splitter(df,grouping_column,pickling = False):
     return  diction
     
    
- 
     
 df = pd.read_csv('sample_meta_data.csv')
 df['Patient ID'] = df['Patient ID'].astype(str)

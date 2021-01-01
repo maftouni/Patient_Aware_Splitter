@@ -17,7 +17,6 @@ def splitter(df,class_name,grouping_column):
     train_filenames = list(train['File name'])
     test_filenames = list(test['File name'])
     
-    #print(train_diagnosis)
     count = 0
 
 
@@ -36,10 +35,6 @@ def splitter(df,class_name,grouping_column):
     print('Total number of copied '+class_name+' images: ',count)
     print(' ')
     
- 
-
-
- 
     
     
 df = pd.read_csv('sample_meta_data.csv')
