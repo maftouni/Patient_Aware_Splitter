@@ -5,6 +5,6 @@ While grouping should be done strictly to ensure there is no overlap of groups, 
 This code assumes that all instances of one group have the same stratification category, meaning that all the images coming from the same Patient ID are either Covid or NonCovid.
 
 
-**split_to_folders.py** splits images into 4 folders inside splitted: train/Covid, train/NonCovid, test/Covid, test/NonCovid
-**split_into_dictionary.py** splits images into a dictionary
+**split_to_folders.py** splits images into 4 folders inside splitted: train/Covid, train/NonCovid, test/Covid, test/NonCovid\
+**split_into_dictionary.py** splits images into a dictionary\
 **split_into_dataloader.py** splits images into a torch Dataloader
