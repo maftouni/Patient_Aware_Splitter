@@ -1,6 +1,10 @@
 # Patient_Aware_Image_Split
-This repository splits a sample Covid/Normal classification dataset into validation and training sets in a patient aware manner. It is important not to split images of the same patient between the sets (to avoid overfitting); therefore, we have used meta-data file to group the images based on Patient-ID first. 
+It is important not to split images of the same patient between the test and train sets to avoid overfitting. This repository splits a sample Covid/Normal classification dataset into train and test sets in a patient aware and stratified manner. The meta-data file is used to group the images based on Patient-ID. 
 
-It is also important to have stratified split of Covid/NonCovid cases. As we only have two classes here, I have disentagled stratification from grouping by splitting each of the classes separately. 
+While grouping should be done strictly to ensure there is no overlap of groups, stratification can be done approximately i.e. as well as possible.
+This code assumes that all instances of one group have the same stratification category, meaning that all the images coming from the same Patient ID are either Covid or NonCovid.
+
 
 **split_to_folders.py** splits images into 4 folders inside splitted: train/Covid, train/NonCovid, test/Covid, test/NonCovid
+**split_into_dictionary.py** splits images into a dictionary
+**split_into_dataloader.py** splits images into a torch Dataloader
