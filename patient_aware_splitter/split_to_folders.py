@@ -57,10 +57,3 @@ def splitter(df, group, stratify_by):
                     
     print('Total number of copied images: ',count)
     print(' ')
-    
-    
-    
-df = pd.read_csv('sample_meta_data.csv')
-df['Patient ID'] = df['Patient ID'].astype(str)
-
-splitter(df,'Patient ID','COVID-19 Infection')
