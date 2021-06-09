@@ -6,7 +6,20 @@ It is important not to split images of the same patient between the test and tra
 While grouping should be done strictly to ensure there is no splitting images of a patient, stratification can be done approximately i.e. as well as possible.
 This code also assumes that all images of one patient have the same stratification category (diagnosis), meaning that all the images coming from the same Patient ID are either Covid or NonCovid.
 
+=========
 
+.. image:: https://img.shields.io/pypi/v/is-number
+   :target: https://pypi.org/project/is-number/
+   :alt: PyPI
+
+Installation
+------------
+
+.. code-block:: bash
+
+  pip install patient-aware-splitter
+   
+   
 To split images into 4 folders (train/Covid, train/NonCovid, test/Covid, test/NonCovid) inside splitted folder:
 ```python
 split_to_folders.py
