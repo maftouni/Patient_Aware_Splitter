@@ -8,9 +8,8 @@ This code also assumes that all images of one patient have the same stratificati
 
 =========
 
-.. image:: https://img.shields.io/pypi/v/is-number
-   :target: https://pypi.org/project/patient-aware-splitter/
-   :alt: PyPI
+[![Latest Version](https://img.shields.io/packagist/v/intervention/image.svg)](https://pypi.org/project/patient-aware-splitter/)
+
 
 Installation
 ------------
