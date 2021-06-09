@@ -12,7 +12,7 @@ setuptools.setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/maftouni/Patient_Aware_Splitter",
-    packages=setuptools.find_packages(),
+    packages=["patient_aware_splitter"],
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
